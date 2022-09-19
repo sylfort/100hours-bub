@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react'
-import './App.css'
-import axios from 'axios'
-import { Form } from "./components/Form";
+import { useState, useEffect } from 'react';
+import './App.css';
+import axios from 'axios';
+import FormFinal from "./components/FormFinal";
 
 function App() {
   const [data, setData] = useState(null);
@@ -19,7 +19,7 @@ function App() {
         <p>{!data ? "Loading..." : data}</p>
       </header>
 
-      <Form />
+        <FormFinal/>
     </div>
   );
 }

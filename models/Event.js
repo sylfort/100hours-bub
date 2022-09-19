@@ -12,8 +12,12 @@ const EventSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  eventTime: {
+    type: String,
+    require: true,
+  },
   eventDate: {
-    type: string,
+    type: Date,
     require: true,
   },
   user: {
