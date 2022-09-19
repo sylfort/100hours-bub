@@ -4,15 +4,18 @@
   "description": "100Devs Social Network",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build",
+    "client": "cd client && npm run dev",
+    "start": "concurrently \"npm run dev\" \"npm run client\""
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.25.1",
+    "concurrently": "^7.4.0",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

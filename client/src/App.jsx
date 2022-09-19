@@ -1,14 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
+import axios from 'axios'
+
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState(null);
 
   React.useEffect(() => {
-    fetch("http://localhost:2121/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
+    axios.get("/api")
+      .then((res) => setData(res.data.message));
   }, []);
 
   return (
