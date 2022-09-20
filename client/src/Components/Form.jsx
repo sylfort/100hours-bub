@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from "axios";
 
 export const Form = () => {
     const formSchema = yup.object().shape({
@@ -15,7 +16,14 @@ export const Form = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
+      console.log(data);
+      axios.post('/event', data)
+      .then(response => {
+      console.log("Status: ", response.status);
+      console.log("Data: ", response.data);
+      }).catch(error => {
+      console.error('Something went wrong!', error);
+      });
     }
 
     return (
@@ -40,19 +48,26 @@ export const Form = () => {
       </div>
       <div>
         <label>Duration</label>
-        <input className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4'
-         name="duration"
+         <select className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4' name="duration"
          type="text"
          placeholder="Event duration"
-         {...register("duration")} />
-         <p className= 'text-red-700'>{errors.duration?.message}</p>
+         {...register("duration")}>
+          <option value={15}>15 minutes</option>
+          <option value={30}>30 minutes</option>
+          <option value={45}>45 minutes</option>
+          <option value={60}>60 minutes</option>
+          <option value={90}>90 minutes</option>
+          <option value={120}>120 minutes</option>
+        </select>
+        <p className= 'text-red-700'>{errors.duration?.message}</p>
       </div>
       <div>
         <label>Date</label>
         <input className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4'
         name="eventDate"
-         type="text"
-         placeholder="Event date"
+        type="date"
+        min="2022-09-20"
+        max="2032-12-31"
          {...register("eventDate")} />
          <p className= 'text-red-700'>{errors.eventDate?.message}</p>
       </div>
