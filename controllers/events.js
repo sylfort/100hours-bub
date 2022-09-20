@@ -1,4 +1,4 @@
-const Post = require("../models/Post");
+const Event = require("../models/Event");
 
 module.exports = {
   getAllEvents: async (req, res) => {
@@ -18,16 +18,16 @@ module.exports = {
     }
   },
   postEvent: async (req, res) => {
+    console.log(req.body);
     try {
       await Event.create({
         eventName: req.body.eventName,
-        user: req.user.id,
         description: req.body.description,
         duration: req.body.duration,
         eventDate: req.body.eventDate,
       });
       console.log("Event has been added!");
-      res.redirect("/");
+      res.send("Event has been added!");
     } catch (err) {
       console.log(err);
     }
