@@ -16,11 +16,11 @@ router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 // Event routes
-router.post("/event", eventsController.postEvent);
+router.post("/event", ensureAuth, eventsController.postEvent);
 
 // React test endpoint
-router.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+// router.get("/username", (req, res) => {
+//   res.json({ message: "Hello from server!" });
+// });
 
 module.exports = router;

@@ -19,6 +19,21 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      "/login": {
+        target: "http://localhost:2121/",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/signup": {
+        target: "http://localhost:2121/",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/profile": {
+        target: "http://localhost:2121/",
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });
