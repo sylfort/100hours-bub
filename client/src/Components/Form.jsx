@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
 
-export const Form = () => {
+function Form() {
     const formSchema = yup.object().shape({
         eventName: yup.string().required("Your event name is required."),
         description: yup.string(),
@@ -27,8 +27,26 @@ export const Form = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
       <div>
+
+      <div>
+      <label htmlFor="event" className="block text-sm font-medium text-gray-700">
+        Event
+      </label>
+      <div className="mt-1">
+        <input
+          type="text"
+          name="event"
+          id="event"
+          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          placeholder="Event Name"
+          {...register("eventName")} />
+         <p className= 'text-red-700'>{errors.eventName?.message}</p>
+      </div>
+    </div>
+
         <label>Event</label>
         <input className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4'
          type="text"
@@ -75,5 +93,10 @@ export const Form = () => {
       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
         Submit</button>
     </form>
+      </div>
+
+        
     )
 }
+
+export default Form;
