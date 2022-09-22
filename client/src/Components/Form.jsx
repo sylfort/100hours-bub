@@ -31,22 +31,6 @@ function Form() {
         <form className="space-y-8 divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
       <div>
 
-      <div>
-      <label htmlFor="event" className="block text-sm font-medium text-gray-700">
-        Event
-      </label>
-      <div className="mt-1">
-        <input
-          type="text"
-          name="event"
-          id="event"
-          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-          placeholder="Event Name"
-          {...register("eventName")} />
-         <p className= 'text-red-700'>{errors.eventName?.message}</p>
-      </div>
-    </div>
-
         <label>Event</label>
         <input className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4'
          type="text"
@@ -57,18 +41,25 @@ function Form() {
       </div>
       <div>
         <label>Description</label>
-        <input className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4'
+        <input className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
         type="text"
+        id="description"
          placeholder="Event description"
          name="description"
          {...register("description")} />
         <p className= 'text-red-700'>{errors.description?.message}</p>
       </div>
       <div>
-        <label>Duration</label>
-         <select className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4' name="duration"
-         type="text"
-         placeholder="Event duration"
+        <label
+          htmlFor="country"
+          className="block text-sm font-medium text-gray-700">
+            Duration
+        </label>
+         <select className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          name="duration"
+          id="duration"
+          type="text"
+          placeholder="Event duration"
          {...register("duration")}>
           <option value={15}>15 minutes</option>
           <option value={30}>30 minutes</option>
@@ -80,10 +71,14 @@ function Form() {
         <p className= 'text-red-700'>{errors.duration?.message}</p>
       </div>
       <div>
-        <label>Date</label>
-        <input className='bg-white shadow-md rounded px-8 pt-2 pb-2 mb-4'
+        <label
+          className="block text-sm font-medium text-gray-700">
+            Date
+        </label>
+        <input className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
         name="eventDate"
         type="date"
+        id="eventDate"
         min="2022-09-20"
         max="2032-12-31"
          {...register("eventDate")} />
