@@ -4,9 +4,10 @@ import './App.css'
 import axios from 'axios'
 import Form  from "./components/Form";
 import TailForm from "./Components/Tail";
+import Event from "./Components/Event";
 
 function App() {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
   // useEffect(() => {
   //   axios.get("/api")
@@ -24,6 +25,8 @@ function App() {
       </main>
 
       <TailForm />
+
+      <Event />
 
       {/* <Form /> */}
     </div>

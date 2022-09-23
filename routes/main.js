@@ -17,6 +17,7 @@ router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 // Event routes
 router.post("/event", ensureAuth, eventsController.postEvent);
+router.get("/event", eventsController.getEvent);
 
 // React test endpoint
 // router.get("/username", (req, res) => {
