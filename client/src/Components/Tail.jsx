@@ -19,8 +19,11 @@ import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
+import { useQuery } from '@tanstack/react-query';
 
-export default function TailForm() {
+export default function TailForm({refetch}) {
+
+
   
   const formSchema = yup.object().shape({
     eventName: yup.string().required("Your event name is required."),
@@ -34,6 +37,7 @@ const {register, reset, handleSubmit, formState:{errors}} = useForm({
 });
 
 const onSubmit = (data) => {
+  refetch;
   console.log(data);
   axios.post('/event', data)
   .then(response => {
