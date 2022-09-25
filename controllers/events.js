@@ -11,8 +11,9 @@ module.exports = {
   },
   getEvent: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
+      const events = await Event.find().sort({ createdAt: "desc" }).lean();
+      console.log(events);
+      res.send({ events: events, user: req.user });
     } catch (err) {
       console.log(err);
     }
