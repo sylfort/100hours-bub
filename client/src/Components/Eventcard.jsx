@@ -8,26 +8,18 @@ export default function Eventcard({data}) {
     
     const { user } = useContext(AppContext);
 
-    const [currentEvent, setCurrentEvent] = useState();
-
     const {register, handleSubmit, formState:{errors}} = useForm();
     
-    const onSubmit = () => {
-      console.log(currentEvent);
-      axios.post('/sendEmail', user)
+    const onSubmit = (e) => {
+        console.log(e, user);
+      axios.post('/sendEmail', {e, user})
       .then(response => {
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
       }).catch(error => {
       console.error('Something went wrong!', error);
       });
-    }
-
-      // useEffect(() => {
-  //   axios.get("/api")
-  //     .then((res) => setData(res.data.message));
-  // }, []);
-    
+    }    
 
     return (
         <>
@@ -80,8 +72,7 @@ export default function Eventcard({data}) {
         
                                 <button
                                     onClick={()=>{
-                                        setCurrentEvent(e.eventName);
-                                        handleSubmit(onSubmit);
+                                        handleSubmit(onSubmit(e));
                                     }
                                         
                                     }
