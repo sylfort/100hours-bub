@@ -4,6 +4,7 @@ const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
 const postsController = require("../controllers/posts");
 const eventsController = require("../controllers/events");
+const emailController = require("../controllers/emails");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes - simplified for now
@@ -18,6 +19,8 @@ router.post("/signup", authController.postSignup);
 // Event routes
 router.post("/event", ensureAuth, eventsController.postEvent);
 router.get("/event", eventsController.getEvent);
+// Email routes
+router.post("/sendEmail", emailController.sendEmail);
 
 // React test endpoint
 // router.get("/username", (req, res) => {

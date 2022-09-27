@@ -26,6 +26,7 @@ module.exports = {
         description: req.body.description,
         duration: req.body.duration,
         eventDate: req.body.eventDate,
+        eventTime: req.body.eventTime,
         user: req.user.userName,
         email: req.user.email,
       });
