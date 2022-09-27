@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
-import Parent from "./Components/Parent";
+import Eventcontainer from "./Components/Eventcontainer";
 import {
   QueryClient,
   QueryClientProvider,
@@ -32,7 +32,7 @@ function App() {
         </div>
       </main>
 
-      <Parent />
+      <Eventcontainer />
 
       {/* <Form /> */}
       </div>

@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 
   
-export default function Event({events}) {
-
+export default function Event({data}) {
+    
     // const { data:events, isLoading, isError, refetch } = useQuery(["events"], () => {
     //     return axios.get("/event")
     //       .then((res) => {
@@ -31,7 +31,7 @@ export default function Event({events}) {
 
     return (
         <>
-        {events?.map((event, index) => (
+        {data?.events?.map((event, index) => (
             <div key={index} className="bg-white my-2 border-double border-4 border-blue-500 shadow overflow-hidden sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Event Information</h3>
@@ -52,7 +52,7 @@ export default function Event({events}) {
                     </div>
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">margotfoster@example.com</dd>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{event.email}</dd>
                     </div>
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">Duration</dt>
