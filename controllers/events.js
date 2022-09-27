@@ -26,7 +26,8 @@ module.exports = {
         description: req.body.description,
         duration: req.body.duration,
         eventDate: req.body.eventDate,
-        user: req.user.id,
+        user: req.user.userName,
+        email: req.user.email,
       });
       console.log("Event has been added!");
       res.send("Event has been added!");

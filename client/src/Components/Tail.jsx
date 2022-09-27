@@ -21,15 +21,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
 import { useQuery } from '@tanstack/react-query';
 
-export default function TailForm({refetch}) {
-
-
+export default function TailForm() {
   
   const formSchema = yup.object().shape({
     eventName: yup.string().required("Your event name is required."),
     description: yup.string(),
     duration: yup.number().typeError('Event duration must be a number.').positive().integer().required("The event duration is required."),
-    eventDate: yup.string().required("The event date is required.")
+    eventDate: yup.string().required("The event date is required."),
 })
 
 const {register, reset, handleSubmit, formState:{errors}} = useForm({
@@ -37,7 +35,6 @@ const {register, reset, handleSubmit, formState:{errors}} = useForm({
 });
 
 const onSubmit = (data) => {
-  refetch;
   console.log(data);
   axios.post('/event', data)
   .then(response => {
@@ -48,6 +45,13 @@ const onSubmit = (data) => {
   });
   reset();
 }
+
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, '0');
+let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+let yyyy = today.getFullYear();
+
+today = `${yyyy}-${mm}-${dd}`;
 
   return (
     <>
@@ -144,6 +148,7 @@ const onSubmit = (data) => {
                       id="eventDate"
                       min="2022-09-20"
                       max="2032-12-31"
+                      defaultValue={today}
                       {...register("eventDate")} />
                       <p className= 'text-red-700'>{errors.eventDate?.message}</p>
                     </div>

@@ -5,16 +5,15 @@ import Event from "./Event";
 import { useQuery } from '@tanstack/react-query';
 
   
-export default function Parent() {
+export default function Eventcontainer() {
 
-    const { data:events, refetch } = useQuery(["eve"], () => {
+    const { data } = useQuery(["eve"], () => {
         return axios.get("/event")
           .then((res) => {
-            console.log(res.data.events, res.data.user)
-            return (res.data.events);
+            // console.log(res.data.events, res.data.user)
+            return (res.data);
           })
     });
-
     // const [events, setEvents] = useState([]);
 
     // useEffect(() => {
@@ -34,8 +33,8 @@ export default function Parent() {
 
     return (
         <>
-        <Tail refetch={refetch} />
-        <Event events={events} />
+        <Tail />
+        <Event data={data} />
         </>
     )
   }
