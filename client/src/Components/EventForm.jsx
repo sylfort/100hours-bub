@@ -1,33 +1,17 @@
-// /*
-//   This example requires Tailwind CSS v2.0+
-
-//   This example requires some changes to your config:
-
-//   ```
-//   // tailwind.config.js
-//   module.exports = {
-//     // ...
-//     plugins: [
-//       // ...
-//       require('@tailwindcss/forms'),
-//     ],
-//   }
-//   ```
-// */
-
 import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
 import { useQuery } from '@tanstack/react-query';
 
-export default function TailForm() {
+export default function EventForm() {
   
   const formSchema = yup.object().shape({
     eventName: yup.string().required("Your event name is required."),
     description: yup.string(),
     duration: yup.number().typeError('Event duration must be a number.').positive().integer().required("The event duration is required."),
     eventDate: yup.string().required("The event date is required."),
+    eventTime: yup.string().required("The event time is required."),
 })
 
 const {register, reset, handleSubmit, formState:{errors}} = useForm({
@@ -43,7 +27,7 @@ const onSubmit = (data) => {
   }).catch(error => {
   console.error('Something went wrong!', error);
   });
-  reset();
+  // reset();
 }
 
 let today = new Date();
@@ -97,8 +81,6 @@ today = `${yyyy}-${mm}-${dd}`;
                        <p className= 'text-red-700'>{errors.eventName?.message}</p>
                     </div>
 
-                  
-
                     <div className="col-span-8 mx-auto">
                         <label
                           htmlFor="description"
@@ -109,7 +91,7 @@ today = `${yyyy}-${mm}-${dd}`;
                         className="md:px-20 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                         type="text"
                         id="description"
-                        placeholder="Event description"
+                        placeholder="Event Description"
                         name="description"
                         {...register("description")} />
                         <p className= 'text-red-700'>{errors.description?.message}</p>
@@ -151,6 +133,22 @@ today = `${yyyy}-${mm}-${dd}`;
                       defaultValue={today}
                       {...register("eventDate")} />
                       <p className= 'text-red-700'>{errors.eventDate?.message}</p>
+                    </div>
+
+                    <div className="col-span-8 mx-auto">
+                        <label
+                          htmlFor="eventTime"
+                          className="block text-sm font-medium text-gray-700">
+                          Event Time
+                        </label>
+                      <input 
+                        className="md:px-20 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        type="time"
+                        min="00:00" max="23:59"
+                        id="eventTime"
+                        name="eventTime"
+                        {...register("eventTime")} />
+                        <p className= 'text-red-700'>{errors.description?.message}</p>
                     </div>
 
                   </div>

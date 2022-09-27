@@ -13,7 +13,11 @@ const EventSchema = new mongoose.Schema({
     require: true,
   },
   eventDate: {
-    type: Date,
+    type: String,
+    require: true,
+  },
+  eventTime: {
+    type: String,
     require: true,
   },
   createdAt: {

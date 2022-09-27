@@ -11,6 +11,7 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const cors = require("cors");
+
 // const path = require("path");
 
 //Use .env file in config folder

@@ -1,20 +1,20 @@
 import React from 'react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import './App.css'
 import axios from 'axios'
-import Eventcontainer from "./Components/Eventcontainer";
+import EventContainer from "./Components/EventContainer";
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
 
-
-
 const queryClient = new QueryClient()
 
-
+export const AppContext = createContext();
 
 function App() {
+
+  const [user, setUser] = useState("");
 
   // useEffect(() => {
   //   axios.get("/api")
@@ -24,19 +24,20 @@ function App() {
   return (
    
       <QueryClientProvider client={queryClient} contextSharing={true}>
-         <div className="App">
-      <main className="container mx-auto">
-        <div className="container mx-auto px-4 py-4 my-8">
-          <a href="/login" className="bg-blue-500 m-8 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Login</a>
-          <a href="/signup" className="bg-blue-500 m-8 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Signup</a>
-        </div>
-      </main>
+        <AppContext.Provider value={{ user, setUser }}>
+          <div className="App">
+            <main className="container mx-auto">
+              <div className="container mx-auto px-4 py-4 my-8">
+                <a href="/login" className="bg-blue-500 m-8 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Login</a>
+                <a href="/signup" className="bg-blue-500 m-8 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Signup</a>
+              </div>
+            </main>
 
-      <Eventcontainer />
+           <EventContainer />
 
-      {/* <Form /> */}
-      </div>
-    </QueryClientProvider>
+          </div>
+        </AppContext.Provider>
+      </QueryClientProvider>
 
 
       
