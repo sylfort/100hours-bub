@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient  } from '@tanstack/react-query';
 
 export default function EventForm() {
   
@@ -18,16 +18,23 @@ const {register, reset, handleSubmit, formState:{errors}} = useForm({
     resolver: yupResolver(formSchema)
 });
 
+const queryClient = useQueryClient()
+
+const { mutate , isLoading , isError}  = useMutation((data) => axios.post('/event', data),
+{
+  onSuccess: () => queryClient.invalidateQueries(['event']),
+})
+
+// .then(response => {
+//   console.log("Status: ", response.status);
+//   console.log("Data: ", response.data);
+//   }).catch(error => {
+//   console.error('Something went wrong!', error);
+//   }),
+
 const onSubmit = (data) => {
   console.log(data);
-  axios.post('/event', data)
-  .then(response => {
-  console.log("Status: ", response.status);
-  console.log("Data: ", response.data);
-  }).catch(error => {
-  console.error('Something went wrong!', error);
-  });
-  // reset();
+  mutate(data);
 }
 
 let today = new Date();
@@ -156,6 +163,7 @@ today = `${yyyy}-${mm}-${dd}`;
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
                     type="submit"
+                    disabled={isLoading}
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Submit
