@@ -40,7 +40,7 @@ export default function EventContainer() {
         <>
         <p
         className="block text-sm font-medium text-white-700"
-        >{user?.username}</p>
+        >Welcome {user?.userName}</p>
         <p>Can't find the event you're looking for?</p>
         <p>Create your own Event!</p>
         {isButtonVisible && <button

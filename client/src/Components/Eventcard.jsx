@@ -11,7 +11,7 @@ export default function Eventcard({data}) {
     const {register, handleSubmit, formState:{errors}} = useForm();
     
     const onSubmit = (e) => {
-        console.log(e, user);
+        console.log("Here:", e, user);
       axios.post('/sendEmail', {e, user})
       .then(response => {
       console.log("Status: ", response.status);
