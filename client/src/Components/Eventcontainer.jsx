@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from 'react';
+import { React, useState, useEffect, useContext } from 'react';
 import EventForm from "./EventForm";
 import EventCard from "./EventCard";
 import { useQuery } from '@tanstack/react-query';
@@ -41,7 +41,7 @@ export default function EventContainer() {
         <h2
         className="block text-sm font-medium text-white-700"
         >Welcome {user?.userName}</h2>
-        <p>Can't find the event you're looking for?</p>
+        <p>Can&apos;t find the event you&apos;re looking for?</p>
         <p>Create your own Event!</p>
         {isButtonVisible && <button
         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
