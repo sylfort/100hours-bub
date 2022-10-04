@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import axios from "axios"
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-export default function EventForm() {
+function EventForm() {
 
   const queryClient = useQueryClient()
 
@@ -184,3 +184,5 @@ export default function EventForm() {
     </>
   );
 }
+
+export default EventForm;

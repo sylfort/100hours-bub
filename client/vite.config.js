@@ -10,37 +10,38 @@ export default defineConfig({
     proxy: {
       // with options
       "/api": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        // target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },
       "/event": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },
       "/login": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },
       "/signup": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },
       "/profile": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },
       "/sendEmail": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },
       "/bookEvent": {
-        target: "https://coffeechatnow-api.onrender.com/",
+        target: "http://localhost:2121/",
         changeOrigin: true,
         secure: false,
       },

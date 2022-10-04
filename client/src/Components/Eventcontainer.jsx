@@ -1,12 +1,12 @@
-import { React, useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios"
-import * as EventForm from "./EventForm"
-import * as EventCard from "./EventCard"
+import EventForm from "./EventForm"
+import EventCard from "./EventCard"
 import { useQuery } from '@tanstack/react-query'
 import { AppContext } from "../App"
 
   
-export default function EventContainer() {
+function EventContainer() {
 
   const {user, setUser } = useContext(AppContext);
 
@@ -49,3 +49,5 @@ export default function EventContainer() {
         </>
     )
   }
+
+  export default EventContainer;
