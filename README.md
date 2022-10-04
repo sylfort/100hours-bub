@@ -1,20 +1,14 @@
-# Install
+# Coffee Chats NOW!
 
-`npm install`
+Coffee chat event scheduler app, created to make easier the process to find a coffee chat in a short time frame.
 
----
-
-# Things to add
-
-- Create a `.env` file in config folder and add the following as `key = value`
-  - PORT = 2121 (can be any port example: 3000)
-  - DB_STRING = `your database URI`
-  - CLOUD_NAME = `your cloudinary cloud name`
-  - API_KEY = `your cloudinary api key`
-  - API_SECRET = `your cloudinary api secret`
+![coffeenow](https://user-images.githubusercontent.com/24916160/193878314-931b69fb-17c0-4eea-a90a-71d1f37ffe4b.jpg)
 
 ---
 
-# Run
+# How It's Made:
 
-`npm start`
+Tech used: React, ReactQuery, yup, Tailwind, Node, Express, MongoDB, Mongoose
+
+Integrated a React frontend with a Express backend
+
