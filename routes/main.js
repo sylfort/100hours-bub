@@ -19,6 +19,7 @@ router.post("/signup", authController.postSignup);
 // Event routes
 router.post("/event", ensureAuth, eventsController.postEvent);
 router.get("/event", eventsController.getEvent);
+router.put("/bookEvent", eventsController.bookEvent);
 // Email routes
 router.post("/sendEmail", emailController.sendEmail);
 

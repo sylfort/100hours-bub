@@ -11,7 +11,9 @@ module.exports = {
   },
   getEvent: async (req, res) => {
     try {
-      const events = await Event.find().sort({ createdAt: "desc" }).lean();
+      const events = await Event.find({ isBooked: false })
+        .sort({ createdAt: "desc" })
+        .lean();
       console.log(events);
       res.send({ events: events, user: req.user });
     } catch (err) {
@@ -32,6 +34,20 @@ module.exports = {
       });
       console.log("Event has been added!");
       res.send("Event has been added!");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  bookEvent: async (req, res) => {
+    try {
+      await Event.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+          isBooked: true,
+        }
+      );
+      console.log("Event booked");
+      res.send("Event booked 2");
     } catch (err) {
       console.log(err);
     }

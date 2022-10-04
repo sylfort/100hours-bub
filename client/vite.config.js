@@ -39,6 +39,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      "/bookEvent": {
+        target: "http://localhost:2121/",
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });

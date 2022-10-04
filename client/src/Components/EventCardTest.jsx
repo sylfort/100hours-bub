@@ -1,47 +1,48 @@
 import axios from "axios";
-import { React, useContext, useState, useEffect } from 'react';
+import { React, useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AppContext } from "../App"
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
   
 export default function Eventcard({data}) {
-
-    const queryClient = useQueryClient()
     
     const { user } = useContext(AppContext);
 
     const {handleSubmit} = useForm();
 
-    const { mutate, isLoading } = useMutation((data) => axios.put('/bookEvent', data),
-    {
-      onSuccess: () => queryClient.invalidateQueries(['event']),
-    })
     
-    const onSubmit = (e) => {
+    
+    const onSubmit = (e, item) => {
         console.log("Here:", e, user);
-        mutate(e);
       axios.post('/sendEmail', {e, user})
       .then(response => {
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
+      handleEventVisibility();
       })
-      .then(remove(e))
+      .then(remove(item))
       .catch(error => {
       console.error('Something went wrong!', error);
       });
     }    
 
-    // const [deletedItems, setDeletedItems] = useState([]);
+    const [isEventVisible, setIsEventVisible] = useState(true);
 
-    // const remove = (item) => {
-    //     console.log(item);
-    //     setDeletedItems([...deletedItems, item]);
-    // };
+    // const [isButtonVisible, setIsButtonVisible] = useState(true);
 
-    const allEvents = data?.events;
+    const handleEventVisibility = () => {
+      setIsEventVisible(false);
+    };
 
-    let listItems = allEvents?.map((e, index) => (
+    const [items, setItems] = useState(data?.events);
+
+    const remove = (item) => {
+        console.log(item);
+        const filteredArr = items.filter((el) => el.id !== item.id);
+        setItems(filteredArr);
+    };
+
+    const listItems = data?.events?.map((e, index) => (
         <div key={index} className="bg-white my-2 border-double border-4 border-blue-500 shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg leading-6 font-medium text-gray-900">Event Information</h3>
@@ -78,22 +79,23 @@ export default function Eventcard({data}) {
                 </div>
     
                 <div className="py-4 sm:py-5 sm:grid sm:gap-4 sm:grid-cols-2 sm:px-6">
-                    <div className="px-4 py-3 bg-gray-50 sm:gap-4 sm:px-6">
+                    {/* <div className="px-4 py-3 bg-gray-50 sm:gap-4 sm:px-6">
                             <button
                                 type="submit"
-                                className="cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 Suggest Reschedule
                             </button>
-                    </div>
+                    </div> */}
                     <div className="px-4 py-3 bg-gray-50 sm:gap-4 sm:px-6">
     
                             <button
+                                onMouseEnter={console.log(user)}
                                 onClick={()=>handleSubmit(onSubmit(e))
                                 }
                                 type="submit"
 
-                            className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${(isLoading && "opacity-50 cursor-not-allowed")} ${(user?.userName ?? "opacity-50 cursor-not-allowed")}`}
+                            className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${(user?.userName ?? "opacity-50 cursor-not-allowed")}`}
                                 
                             >
                                 Join
