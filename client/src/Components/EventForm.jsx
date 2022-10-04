@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import axios from "axios";
 import React from "react";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useForm } from "react-hook-form"
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import axios from "axios"
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export default function EventForm() {
 
