@@ -1,10 +1,10 @@
-import { React, useState, createContext } from 'react';
-import './App.css';
-import EventContainer from "./Components/EventContainer";
+import { React, useState, createContext } from 'react'
+import './App.css'
+import EventContainer from "./Components/EventContainer"
 import {
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query';
+} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const queryClient = new QueryClient()
