@@ -1,11 +1,11 @@
 import axios from "axios";
-import { React, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { AppContext } from "../App"
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
   
-function EventCard({data}) {
+const EventCard = ({data}) => {
 
     const queryClient = useQueryClient()
     

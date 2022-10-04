@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { AppContext } from "../App"
 
   
-function EventContainer() {
+const EventContainer = () => {
 
   const {user, setUser } = useContext(AppContext);
 
@@ -43,7 +43,7 @@ function EventContainer() {
         className="mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         onClick={handleCreateEventPress}
         >Create event</button>}
-          </div> : <p>Make sure to login before create a new event!</p>}
+          </div> : <p>Make sure to login before creating a new event!</p>}
         {isCreateEventVisible && data.user && <EventForm data={data}/>}
         <EventCard data={data} />
         </>
