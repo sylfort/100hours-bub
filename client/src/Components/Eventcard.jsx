@@ -5,7 +5,7 @@ import { AppContext } from "../App"
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
   
-export default function Eventcard({data}) {
+function EventCard({data}) {
 
     const queryClient = useQueryClient()
     
@@ -112,3 +112,6 @@ export default function Eventcard({data}) {
         </>
     )
   }
+
+  
+  export default EventCard;
