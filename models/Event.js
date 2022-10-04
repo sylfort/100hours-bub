@@ -32,6 +32,10 @@ const EventSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  isBooked: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Event", EventSchema);

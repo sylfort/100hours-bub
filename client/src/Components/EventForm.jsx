@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios";
 import React from "react";
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export default function EventForm() {
 
@@ -17,11 +17,11 @@ export default function EventForm() {
     eventTime: yup.string().required("The event time is required."),
   })
 
-  const { register, reset, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(formSchema)
   });
 
-  const { mutate, isLoading, isError } = useMutation((data) => axios.post('/event', data),
+  const { mutate, isLoading } = useMutation((data) => axios.post('/event', data),
     {
       onSuccess: () => queryClient.invalidateQueries(['event']),
     })
@@ -39,9 +39,9 @@ export default function EventForm() {
   }
 
   let today = new Date();
-  let dd = String(today.getDate()).padStart(2, '0');
-  let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-  let yyyy = today.getFullYear();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const yyyy = today.getFullYear();
 
   today = `${yyyy}-${mm}-${dd}`;
 
