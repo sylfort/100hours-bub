@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios"
-import EventForm from "./EventForm"
-import EventCard from "./EventCard"
+import EventForm from "./EventForm.jsx"
+import EventCard from "./EventCard.jsx"
 import { useQuery } from '@tanstack/react-query'
 import { AppContext } from "../App"
 

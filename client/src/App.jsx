@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react'
 import './App.css'
-import EventContainer from "./Components/EventContainer"
+import EventContainer from "./Components/EventContainer.jsx"
 import {
   QueryClient,
   QueryClientProvider,
