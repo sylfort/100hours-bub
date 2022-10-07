@@ -81,7 +81,7 @@ const EventCard = ({data}) => {
                     <div className="px-4 py-3 bg-gray-50 sm:gap-4 sm:px-6">
                             <button
                                 type="submit"
-                                className="cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="opacity-50 cursor-not-allowed inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 Suggest Reschedule
                             </button>
@@ -92,9 +92,7 @@ const EventCard = ({data}) => {
                                 onClick={()=>handleSubmit(onSubmit(e))
                                 }
                                 type="submit"
-
-                            className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${(isLoading && "opacity-50 cursor-not-allowed")} ${(user?.userName ?? "opacity-50 cursor-not-allowed")}`}
-                                
+                                className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${(isLoading && "opacity-50 cursor-not-allowed")} ${(user?.userName ?? "opacity-50 cursor-not-allowed")}`}   
                             >
                                 Join
                             </button>
