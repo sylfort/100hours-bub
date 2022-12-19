@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "cloudinary": "^1.25.1",
+    "cloudinary": "^1.33.0",
     "concurrently": "^7.6.0",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
