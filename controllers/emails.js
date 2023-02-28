@@ -6,7 +6,7 @@ module.exports = {
     const user = req.body.user;
     const event = req.body.e;
     const output = `
-    <p>Hi ${user.userName},</p>
+    <p>Hi,</p>
     <br/>
     <p>A new event has been scheduled.</p>
     <br/>
@@ -18,12 +18,12 @@ module.exports = {
     <p>${event.description}</p>
     <br/>
 
-    <p><b>Invitee:</b></p>
-    <p>${event.user}</p>
+    <p><b>Participants:</b></p>
+    <p>${event.user} and ${user.userName}</p>
     <br/>
 
-    <p><b>Invitee Email:</b></p>
-    <p>${event.email}</p>
+    <p><b>Participants Email:</b></p>
+    <p>${event.email} and ${user.email}</p>
     <br/>
 
     <p><b>Event Date/Time:</b></p>
@@ -35,8 +35,8 @@ module.exports = {
     <br/>    
     `;
 
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
+     // create reusable transporter object using the default SMTP transport
+     let transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: 587,
       secure: false, // true for 465, false for other ports
@@ -61,6 +61,10 @@ module.exports = {
     console.log("Message sent: %s", info.messageId);
 
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
+    console.log(user);
+
+    console.log(event);
 
     res.send("email sent!");
 
