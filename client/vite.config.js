@@ -21,6 +21,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      // "/login": " http://localhost:2121/login",
       "/login": {
         target: "http://localhost:2121/",
         changeOrigin: true,
@@ -32,7 +33,7 @@ export default defineConfig({
         secure: false,
       },
       "/profile": {
-        target: "http://localhost:2121/",
+        target: "http://localhost:5173/",
         changeOrigin: true,
         secure: false,
       },
@@ -43,6 +44,21 @@ export default defineConfig({
       },
       "/bookEvent": {
         target: "http://localhost:2121/",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/loginForm": {
+        target: "http://localhost:5173/",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/signupForm": {
+        target: "http://localhost:5173/",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/profileForm": {
+        target: "http://localhost:5173/",
         changeOrigin: true,
         secure: false,
       },
