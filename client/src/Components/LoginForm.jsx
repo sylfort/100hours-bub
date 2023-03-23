@@ -25,41 +25,43 @@ const LoginForm = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(data => axios.post("/login", data), {
-    onSuccess: () => queryClient.invalidateQueries(["login"]),
+  const { mutate } = useMutation(data => axios.post("/api/login", data), {
+    onSuccess: () =>
+      queryClient.invalidateQueries(["http://localhost:2121/login"]),
   });
 
   const onSubmit = data => {
     console.log(data);
+    // axios.post("/api/login", data);
     mutate(data);
   };
 
-  //   const onSubmit = async data => {
+  // const onSubmit = async data => {
+  //   try {
+  //     await axios.post("/login", data);
+  //     // Handle login success (e.g., update state, redirect)
+  //   } catch (error) {
+  //     // Handle login error (e.g., display error message)
+  //   }
+  // };
+
+  // const [redirectTo, setRedirectTo] = useState(null);
+
+  // useEffect(() => {
+  //   const checkLoginStatus = async () => {
   //     try {
-  //       await axios.post("/login", data);
-  //       // Handle login success (e.g., update state, redirect)
+  //       await axios.get("/login");
+  //       setRedirectTo("/profileForm");
   //     } catch (error) {
-  //       // Handle login error (e.g., display error message)
+  //       // Handle error
   //     }
   //   };
+  //   checkLoginStatus();
+  // }, []);
 
-  //   const [redirectTo, setRedirectTo] = useState(null);
-
-  //   useEffect(() => {
-  //     const checkLoginStatus = async () => {
-  //       try {
-  //         await axios.get("/login");
-  //         setRedirectTo("/profileForm");
-  //       } catch (error) {
-  //         // Handle error
-  //       }
-  //     };
-  //     checkLoginStatus();
-  //   }, []);
-
-  //   if (redirectTo === "/profileForm") {
-  //     return redirect("/profileForm");
-  //   }
+  // if (redirectTo === "/profileForm") {
+  //   return redirect("/profileForm");
+  // }
 
   return (
     // 7.1.5. Style form using TailwindCSS

@@ -62,8 +62,8 @@ app.use(passport.session());
 app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
-app.use("/", mainRoutes);
-app.use("/post", postRoutes);
+app.use("/api", mainRoutes);
+app.use("/api/post", postRoutes);
 
 // Have Node serve the files for our built React app
 // app.use(express.static(path.resolve(__dirname, "../client/build")));
