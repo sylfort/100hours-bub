@@ -9,9 +9,11 @@ exports.getLogin = (req, res) => {
   //   res.status(200).json({ redirectTo: "/login" });
   // }
   if (req.user) {
-    return res.redirect("/profile");
+    return res.status(400).send("Bad Request");
   } else {
-    return res.redirect("/loginForm");
+    return res.status(200).json({
+      user: user.username,
+    });
   }
 };
 
@@ -44,7 +46,9 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect("/");
+      res.status(200).json({
+        user: user.username,
+      });
     });
   })(req, res, next);
 };

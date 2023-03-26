@@ -5,6 +5,7 @@ import * as yup from "yup";
 import axios from "axios";
 // import { redirect } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 // 7.1.2. Set up yup validation schema
 const formSchema = yup.object().shape({
@@ -26,9 +27,37 @@ const LoginForm = () => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(data => axios.post("/api/login", data), {
-    onSuccess: () =>
-      queryClient.invalidateQueries(["http://localhost:2121/login"]),
+    onSuccess: () => {
+      const navigate = useNavigate();
+      console.log("I'm first!");
+      queryClient.invalidateQueries(["/api/login"]);
+      navigate("/signupForm");
+    },
   });
+
+  //   To integrate Tanstackquery and react-router-dom, you can use the useNavigate hook from
+  //   react-router-dom to navigate to another component when the onSuccess function is called. Here’s an example:
+
+  // import { useNavigate } from 'react-router-dom';
+  // import { useMutation } from 'react-query';
+  // import { createTodo } from './api';
+
+  // function AddTodo() {
+  //   const navigate = useNavigate();
+  //   const mutation = useMutation(createTodo, {
+  //     onSuccess: () => {
+  //       navigate('/todos');
+  //     },
+  //   });
+
+  //   function handleSubmit(event) {
+  //     event.preventDefault();
+  //     const formData = new FormData(event.target);
+  //     mutation.mutate({
+  //       title: formData.get('title'),
+  //       description: formData.get('description'),
+  //     });
+  //   }
 
   const onSubmit = data => {
     console.log(data);
