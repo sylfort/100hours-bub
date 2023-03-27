@@ -26,9 +26,10 @@ const LoginForm = () => {
 
   const queryClient = useQueryClient();
 
+  const navigate = useNavigate();
+
   const { mutate } = useMutation(data => axios.post("/api/login", data), {
     onSuccess: () => {
-      const navigate = useNavigate();
       console.log("I'm first!");
       queryClient.invalidateQueries(["/api/login"]);
       navigate("/signupForm");
