@@ -4,14 +4,21 @@ const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
   // if (req.user) {
-  //   return res.redirect("/profile");
+  //   res.status(200).json({ redirectTo: "/profile" });
+  // } else {
+  //   res.status(200).json({ redirectTo: "/login" });
   // }
-  res.render("login", {
-    title: "Login",
-  });
+  if (req.user) {
+    return res.status(400).send("Bad Request");
+  } else {
+    return res.status(200).json({
+      user: user.username,
+    });
+  }
 };
 
 exports.postLogin = (req, res, next) => {
+  console.log(req.body);
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -20,7 +27,7 @@ exports.postLogin = (req, res, next) => {
 
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
-    return res.redirect("/login");
+    return res.redirect("/");
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
@@ -32,14 +39,16 @@ exports.postLogin = (req, res, next) => {
     }
     if (!user) {
       req.flash("errors", info);
-      return res.redirect("/login");
+      return res.redirect("/");
     }
     req.logIn(user, (err) => {
       if (err) {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/");
+      res.status(200).json({
+        user: user.username,
+      });
     });
   })(req, res, next);
 };
@@ -60,9 +69,14 @@ exports.getSignup = (req, res) => {
   // if (req.user) {
   //   return res.redirect("/profile");
   // }
-  res.render("signup", {
-    title: "Create Account",
-  });
+  // res.render("signup", {
+  //   title: "Create Account",
+  // });
+  if (req.user) {
+    return res.redirect("/profile");
+  } else {
+    return res.redirect("/signupForm");
+  }
 };
 
 exports.postSignup = (req, res, next) => {
@@ -78,7 +92,7 @@ exports.postSignup = (req, res, next) => {
 
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
-    return res.redirect("../signup");
+    return res.redirect("/signupForm");
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
@@ -100,7 +114,7 @@ exports.postSignup = (req, res, next) => {
         req.flash("errors", {
           msg: "Account with that email address or username already exists.",
         });
-        return res.redirect("../signup");
+        return res.redirect("/signupForm");
       }
       user.save((err) => {
         if (err) {
