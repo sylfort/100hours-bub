@@ -6,6 +6,7 @@ import axios from "axios";
 // import { redirect } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+// import { AppContext } from "../App";
 
 // 7.1.2. Set up yup validation schema
 const formSchema = yup.object().shape({
@@ -15,6 +16,7 @@ const formSchema = yup.object().shape({
 
 // 7.1.3. Create LoginForm component
 const LoginForm = () => {
+  // const { user, setUser } = useContext(AppContext);
   // 7.1.4. Use react-hook-form
   const {
     register,
@@ -28,11 +30,17 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
+  // const { user, setUser } = useContext(AppContext);
+
   const { mutate } = useMutation(data => axios.post("/api/login", data), {
-    onSuccess: () => {
-      console.log("I'm first!");
+    onSuccess: async ({ data }) => {
+      console.log(data?.userName);
       queryClient.invalidateQueries(["/api/login"]);
-      navigate("/signupForm");
+      navigate("/");
+    },
+    onError: async () => {
+      console.log("Invalid email or password");
+      // navigate("/signupForm");
     },
   });
 
@@ -61,7 +69,7 @@ const LoginForm = () => {
   //   }
 
   const onSubmit = data => {
-    console.log(data);
+    // console.log(data);
     // axios.post("/api/login", data);
     mutate(data);
   };

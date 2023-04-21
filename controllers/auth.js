@@ -46,9 +46,8 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.status(200).json({
-        user: user.username,
-      });
+      console.log(user);
+      res.status(200).json(user);
     });
   })(req, res, next);
 };
