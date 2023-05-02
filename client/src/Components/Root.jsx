@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import EventContainer from "./EventContainer";
 
 function Root() {
   return (
@@ -38,6 +39,7 @@ function Root() {
         </p>
         <p className="mx-auto mb-2 text-xl text-blue-700">Anytime, anywhere</p>
       </main>
+      <EventContainer />
     </div>
   );
 }
