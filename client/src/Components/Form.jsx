@@ -28,7 +28,7 @@ function Form() {
   const onSubmit = data => {
     console.log(data);
     axios
-      .post("/event", data)
+      .post("/api/event", data)
       .then(response => {
         console.log("Status: ", response.status);
         console.log("Data: ", response.data);

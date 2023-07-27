@@ -35,6 +35,7 @@ module.exports = {
       console.log("Event has been added!");
       res.send("Event has been added!");
     } catch (err) {
+      console.log("Error adding event");
       console.log(err);
     }
   },
@@ -49,6 +50,7 @@ module.exports = {
       console.log("Event booked");
       res.send("Event booked 2");
     } catch (err) {
+      console.log("Error booking event");
       console.log(err);
     }
   },

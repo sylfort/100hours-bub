@@ -104,11 +104,7 @@ exports.postSignup = (req, res, next) => {
   });
 
   User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
-    (err, existingUser) => {
-      if (err) {
-        return next(err);
-      }
+    { $or: [{ email: req.body.email }, { userName: req.body.userName }] }).then((existingUser) => {
       if (existingUser) {
         req.flash("errors", {
           msg: "Account with that email address or username already exists.",
@@ -126,6 +122,9 @@ exports.postSignup = (req, res, next) => {
           res.redirect("/");
         });
       });
-    }
-  );
-};
+    })
+  .catch((err) => {
+    console.log(err);
+    return next(err);
+  });
+  };

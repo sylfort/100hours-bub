@@ -12,7 +12,7 @@ const EventCard = ({ data }) => {
   const { handleSubmit } = useForm();
 
   const { mutate, isLoading } = useMutation(
-    data => axios.put("/bookEvent", data),
+    data => axios.put("/api/bookEvent", data),
     {
       onSuccess: () => queryClient.invalidateQueries(["event"]),
     }
@@ -22,12 +22,12 @@ const EventCard = ({ data }) => {
     console.log("Here:", e, user);
     mutate(e);
     axios
-      .post("/sendEmail", { e, user })
+      .post("/api/sendEmail", { e, user })
       .then(response => {
         console.log("Status: ", response.status);
         console.log("Data: ", response.data);
       })
-      .then(remove(e))
+      // .then(remove(e))
       .catch(error => {
         console.error("Something went wrong!", error);
       });

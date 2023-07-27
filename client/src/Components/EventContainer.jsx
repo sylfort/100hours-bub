@@ -10,10 +10,9 @@ const EventContainer = () => {
 
   const { data } = useQuery(
     ["event"],
-    () => {
-      return axios.get("/api/event").then(res => {
-        return res.data;
-      });
+    async () => {
+      const res = await axios.get("/api/event");
+      return res.data;
     },
     { refetchOnWindowFocus: false }
   );

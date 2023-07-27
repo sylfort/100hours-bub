@@ -21,7 +21,7 @@ const EventForm = ()=> {
     resolver: yupResolver(formSchema)
   });
 
-  const { mutate, isLoading } = useMutation((data) => axios.post('/event', data),
+  const { mutate, isLoading } = useMutation((data) => axios.post('/api/event', data),
     {
       onSuccess: () => queryClient.invalidateQueries(['event']),
     })
